@@ -1,7 +1,7 @@
     /*  Explanation
     # Leetcode problem link : https://leetcode.com/problems/remove-k-digits/
     Time Complexity for operators : o(n) .. n is the length of the string
-    Extra Space Complexity for operators : o(n) .. stack
+    Extra Space Complexity for operators : o(n) .. stack and String Builder
     Did this code successfully run on Leetcode : NA
     Any problem you faced while coding this : No
 # Your code here along with comments explaining your approach
@@ -9,7 +9,13 @@
         # Optimized approach: 
                               
             # 1. 
-                    A) 
+                    A) Create a stack and add the character on to the stack.
+                    B) If it matches k > 0 && (!stack.isEmpty() && stack.peek() > val1) then pop from stack
+                       and deduct the k.
+                    C) Now, after these iteration, if k > 0 that emans we have to agauin remove some characters
+                       remove it from end that means pop from stack.
+                    D) Now, handle the condition of removing Leading Zeroes.
+                    E) At the end, reverse the string and return it.
 
 
     */ 
