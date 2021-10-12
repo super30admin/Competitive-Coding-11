@@ -9,6 +9,12 @@ class Solution:
         if len(num) == k:
             return "0"
         stack = []
+        # We traverse through string of digits and we compare the topmost element with 
+        # the current element we are at, if the stack element is greater than the 
+        # current element we pop from the stack and decrement k. In all other cases we
+        # append the digits to the stack. At the end if k is not zero we return the 
+        # first k elements from the stack. In other cases we strip leading 0 from the
+        # string and return.
         for n in num:
             while k and stack and stack[-1] > n:
                 if stack[-1] > n:
