@@ -1,4 +1,6 @@
 class Solution:
+    # Time Complexity - O(n)
+    # Space Complexity - O(number of digits) for the stack
     def evalRPN(self, tokens) -> int:
         output = 0
         stack = []
