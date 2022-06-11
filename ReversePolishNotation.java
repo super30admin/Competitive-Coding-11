@@ -6,32 +6,32 @@ public class ReversePolishNotation {
     public int evalRPN(String[] tokens) {
         if(tokens == null || tokens.length == 0) return 0;
 
-        Stack<String> stack = new Stack<>();
+        Stack<Integer> stack = new Stack<>();
 
         for (String token : tokens) {
             if (token.equals("+") || token.equals("-") || token.equals("*") || token.equals("/")) {
-                String operand2 = stack.pop();
-                String operand1 = stack.pop();
+                int operand2 = stack.pop();
+                int operand1 = stack.pop();
                 int answer = evalExpression(operand1, operand2, token);
-                stack.push("" + answer);
+                stack.push(answer);
             } else {
-                stack.push(token);
+                stack.push(Integer.parseInt(token));
             }
         }
 
-        return Integer.parseInt(stack.pop());
+        return stack.pop();
     }
 
-    private int evalExpression(String operand1, String operand2, String operator) {
+    private int evalExpression(int operand1, int operand2, String operator) {
         switch (operator) {
             case "-":
-                return Integer.parseInt(operand1) - Integer.parseInt(operand2);
+                return operand1 - operand2;
             case "*":
-                return Integer.parseInt(operand1) * Integer.parseInt(operand2);
+                return operand1 * operand2;
             case "/":
-                return Integer.parseInt(operand1) / Integer.parseInt(operand2);
+                return operand1 / operand2;
             default:
-                return Integer.parseInt(operand1) + Integer.parseInt(operand2);
+                return operand1 + operand2;
         }
     }
 }
