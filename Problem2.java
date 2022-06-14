@@ -4,7 +4,6 @@ public class Problem2 {
     public int evalRPN(String[] tokens) {
         if (tokens == null || tokens.length == 0) return 0;
 
-        int n = tokens.length;
         Stack<Integer> s = new Stack<>();
 
         for (String temp : tokens) {
