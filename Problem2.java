@@ -1,6 +1,9 @@
 import java.util.Stack;
 
 public class Problem2 {
+
+    // TC : O(n)
+    // SC : O(n) // space from stack
     public int evalRPN(String[] tokens) {
         if (tokens == null || tokens.length == 0) return 0;
 
