@@ -1,3 +1,9 @@
+/**
+Time Complexity : O(N)
+Space Complexity : O(N)
+Did this code successfully run on Leetcode : Yes
+Any problem you faced while coding this : Yes, the boundary cases were too complex to handle
+*/
 public class RemoveKDigits
 {
     public String removeKdigits(String num, int k)
