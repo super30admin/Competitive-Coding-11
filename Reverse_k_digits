@@ -1,0 +1,39 @@
+//TimeComplexity.  O(n)
+//SpaceComplexity. O(n)
+
+class Solution {
+    public String removeKdigits(String str, int k) {
+        
+      Stack<Character> st = new Stack<>();
+        int i = 0;
+
+        while(i < str.length()){
+             char c = str.charAt(i);
+            while(!st.isEmpty() && k > 0 && st.peek() > c ){
+                st.pop();
+                k--;
+            }
+             st.push(c);
+             i++;
+        }
+
+        while(k > 0){
+            st.pop();
+            k--;
+        }
+
+        String result = "";
+       
+        while(!st.isEmpty()){
+           result  = st.pop() + result;
+            
+        }
+
+        while(result.length() > 1 && result.charAt(0) == '0'){
+            result = result.substring(1);
+            }
+
+       if(result.equals(""))return "0";
+       return result;  
+    }
+}
