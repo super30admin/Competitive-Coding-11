@@ -1,0 +1,39 @@
+//TimeCompelxity.  O(n)
+//SpaceComplexity. O(n)
+
+class Solution {
+    public int evalRPN(String[] tokens) {
+        
+        int curr = 0;
+        Stack<Integer> st = new Stack<>();
+        
+       
+        
+       for(String s : tokens){
+           if(s.equals("+")){
+               int val1 = st.pop();
+                int val2    = st.pop();
+                curr = val2 + val1;
+               st.push(curr);
+            }else if(s.equals("-")){
+               int val1 = st.pop();
+                int val2    = st.pop();
+                 curr =val2 - val1;
+                      st.push(curr);
+            }else if(s.equals("*")){
+               int val1 = st.pop();
+                int val2    = st.pop();
+                 curr =val1 * val2;
+                st.push(curr);
+            }else if(s.equals("/")){
+               int val1 = st.pop();
+                int val2    = st.pop();
+                 curr = val2/val1;
+                st.push(curr);
+            }else{
+               st.push(Integer.parseInt(s));
+           }
+       }
+       return st.pop();  
+    }
+}
