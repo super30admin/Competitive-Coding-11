@@ -1,0 +1,34 @@
+//Time Complexity: O(n): Traverse through the string only once.
+//Space Complexity: O(1)
+//Approach: Get the top two elements from stack if the current element is a mathematical operator.
+//After computation push the result to stack.
+class Solution {
+    public int evalRPN(String[] tokens) {
+        int out1=0; int out2=0;
+        Stack<Integer> stack = new Stack<Integer>();
+        List<String> operators = Arrays.asList(new String[]{"+", "-", "*", "/"});
+        for(String token: tokens){     
+            if(operators.contains(token)){
+                    out2=stack.pop();
+                    out1=stack.pop();
+            }                                         
+            switch(token){                 
+                case "+":                    
+                    stack.push(out1+out2);  
+                    break;                     
+                case "-":                 
+                    stack.push(out1-out2);
+                    break;                
+                case "*":                     
+                    stack.push(out2*out1);
+                    break;                
+                case "/":                     
+                    stack.push(out1/out2);
+                    break;                
+                default: stack.push(Integer.parseInt(token));
+            }  
+           
+        } 
+        return stack.pop();              
+    }
+}

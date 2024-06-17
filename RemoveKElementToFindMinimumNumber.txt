@@ -1,0 +1,32 @@
+//Time complexity:O(n)
+//Space complexity: O(n)
+//Approach: A monotonic stack has elements stored in either increading order or decreasing order. 
+//For an element to be minimal, initial elements should be less ,
+//so we have to see "is there is any element added to the stack whose value is higher than the current value?"
+//Initially add an element to the stack,  while current element is less than the top of stack then replace it with new value.
+//Make sure to take off trailing zeroes. If the number is 12345, two options if have to take off k=2 then  12 or 45 are the options.
+//So take off 45 then number becomes 123 by popping top elements from stack.
+class Solution {
+    public String removeKdigits(String num, int k) {
+        Deque<Character> stack= new ArrayDeque<>();
+        for(char c: num.toCharArray()){
+            while(!stack.isEmpty() && stack.peek()>c && k>0){
+                stack.pop();
+                k--;
+            }
+            stack.push(c);
+        }
+        while(!stack.isEmpty() && stack.peekLast()=='0'){
+                stack.pollLast();
+        }
+        while(!stack.isEmpty() && k>0){
+            stack.pop();
+            k--;
+        }
+        StringBuilder sb= new StringBuilder();
+        while(!stack.isEmpty()){
+            sb.append(stack.pollLast());
+        }
+        return sb.isEmpty()? "0": sb.toString();
+    }
+}
