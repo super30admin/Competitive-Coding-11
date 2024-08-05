@@ -1,0 +1,35 @@
+competitive coding 11
+(cc 6 2nd problem)
+
+
+Interview Problem : Reverse Polish Notation Evaluation
+
+Time Complexity : O(n)
+Space Complexity : O(n)
+
+
+class Solution:
+    def evalRPN(self, tokens: List[str]) -> int:
+        if tokens == None or len(tokens) == 0:
+            return 0
+
+        s = []
+
+        for i in tokens:
+            if i not in "+-/*":
+                s.append(int(i))
+            
+            else:
+                num1 = s.pop()
+                num2 = s.pop()
+            
+                if i == "+":
+                    s.append(num2 + num1)
+                elif i == '-':
+                    s.append(num2 - num1)
+                elif i == "*":
+                    s.append(num2 * num1)
+                else:
+                    s.append(int(num2 / num1))
+        
+        return s.pop()
