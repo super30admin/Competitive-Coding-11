@@ -1,0 +1,33 @@
+// TC : O(n)
+// SC : O(n)
+class Solution {
+    public int evalRPN(String[] tokens) {
+        Stack<Integer> st = new Stack<>();
+        int opt1 = 0;
+        int opt2 = 0;
+        for(String token : tokens) {
+            if(token.equals("+")) {
+                opt1 = st.pop();
+                opt2 = st.pop();
+                st.add(opt1 + opt2);
+            } else if(token.equals("-")) {
+                opt1 = st.pop();
+                opt2 = st.pop();
+                st.add(opt2 - opt1);
+
+            } else if(token.equals("*")) {
+                opt1 = st.pop();
+                opt2 = st.pop();
+                st.add(opt2 * opt1);
+            } else if(token.equals("/")) {
+                opt1 = st.pop();
+                opt2 = st.pop();
+                st.add(opt2 / opt1);
+
+            } else {
+                st.add(Integer.parseInt(token));
+            }
+        }
+        return st.pop();
+    }
+}
