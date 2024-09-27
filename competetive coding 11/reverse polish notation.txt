@@ -1,0 +1,34 @@
+// solution executed on leet code
+// run time = O(n) n=num of strings
+// space = O(n)
+class Solution {
+    public int evalRPN(String[] tokens)
+    {
+        Stack<String> stack=new Stack<>();
+        stack.push(tokens[0]);
+       
+            for(int i=1;i<tokens.length;i++)
+            {
+                if(tokens[i].equals("+") ||tokens[i].equals("-")||tokens[i].equals("*")                         ||tokens[i].equals("/") )
+                {
+                    int b=Integer.parseInt(stack.pop());
+                    int a=Integer.parseInt(stack.pop());
+                    switch(tokens[i])
+                    {
+                        case "+": stack.push(String.valueOf(a+b));
+                                    break;
+                        case "-": stack.push(String.valueOf(a-b));
+                                    break;
+                        case "*": stack.push(String.valueOf(a*b));
+                                    break;
+                        case "/": stack.push(String.valueOf(a/b));
+                                    break;
+                    }
+                }
+                else
+                    stack.push(tokens[i]);
+            }
+        
+        return Integer.parseInt(stack.pop());
+    }
+}
