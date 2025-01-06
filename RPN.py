@@ -22,4 +22,3 @@ class Solution:
         
         # The result of the expression is the last item in the stack
         return stack[0]
-
