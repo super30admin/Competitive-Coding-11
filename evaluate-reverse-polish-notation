@@ -1,0 +1,54 @@
+// Time Complexity :O(n)
+// Space Complexity :O(n)
+// Did this code successfully run on Leetcode :yes
+// Any problem you faced while coding this :no
+
+
+// Your code here along with comments explaining your approach:i have resolved by using Stack,by pushing digits into the stack and  whenever i encounter a operator then i pop the last two elements from stack and process those two with operator then push that processed result into the stack to process remaining elments.
+
+class Solution {
+    public int evalRPN(String[] tokens) {
+        int n = tokens.length;
+        if (n == 1) {
+            return Integer.parseInt(tokens[0]);
+        }
+        int result = 0;
+        int num1 = 0;
+        int num2 = 0;
+        Stack<Integer> st = new Stack<>();
+        for (int i = 0; i < n; i++) {
+            String str = tokens[i];
+            if (isNumber(str)) {
+                st.push(Integer.parseInt(str));
+            } else {
+                int size = st.size();
+                num1 = st.pop();
+                if (size > 1) {
+                    num2 = st.pop();
+                }
+                if (str.equals("+")) {
+                    result = num1 + num2;
+                } else if (str.equals("-")) {
+                    result = num2 - num1;
+                } else if (str.equals("*")) {
+                    result = num1 * num2;
+                } else {
+                    result = num2 / num1;
+                }
+                st.push(result);
+            }
+        }
+        return result;
+    }
+
+    private boolean isNumber(String str) {
+        if (str == null || str.isEmpty())
+            return false;
+        try {
+            Integer.parseInt(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+}
