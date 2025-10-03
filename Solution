@@ -1,0 +1,44 @@
+// TC - O(n)
+// SC - O(n)
+
+// We use stack to simulate digit selection.
+class Solution {
+    public String removeKdigits(String num, int k) {
+        
+        if(num == null || num.length() == 0){
+            return "";
+        }
+
+        Stack<Character> s = new Stack<>();
+        StringBuilder result = new StringBuilder();
+
+        for(int i = 0; i < num.length(); i++){
+            while(!s.isEmpty() && k > 0 && Character.getNumericValue(num.charAt(i)) < Character.getNumericValue(s.peek())){
+                s.pop();
+                k--;
+            }
+            s.push(num.charAt(i));
+        }
+
+        while (k > 0 && !s.isEmpty()) {
+            s.pop();
+            k--;
+        }
+
+        while(!s.isEmpty()){
+            result.append(s.pop());
+        }
+
+        result.reverse();
+      
+        while (result.length() > 1 && result.charAt(0) == '0') {
+            result.deleteCharAt(0);
+        }
+
+        if (result.length() == 0) {
+            return "0";
+        }
+
+        return result.toString();
+    }
+}
