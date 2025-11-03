@@ -1,0 +1,40 @@
+// Time Complexity : O(n)
+// Space Complexity : O(n)
+
+// Add each character into the stack, if a character is lesser than the top of stack, pop from stack
+// Cotninue till k characters have been removed or till end of string
+// remove any eading zeroes and return the string from the stack
+
+class Solution {
+    public String removeKdigits(String num, int k) {
+        StringBuilder sb = new StringBuilder();
+        if(k >= num.length())
+            return "0";
+        Stack<Character> stack = new Stack<>();
+        for(int i = 0; i < num.length(); i++) {
+            while(!stack.isEmpty() && stack.peek() > num.charAt(i) && k > 0) {
+                k--;
+                stack.pop();
+            }
+            stack.push(num.charAt(i));
+        }
+
+        while(k > 0){
+            stack.pop();
+            k--;
+        }
+        while(!stack.isEmpty()) {
+            sb.append(stack.pop());
+        }
+
+        sb.reverse();
+
+        // Remove leading zeroess
+        while(sb.length() > 0 && sb.charAt(0) == '0') {
+            sb.deleteCharAt(0);
+        }
+        if(sb.length() == 0)
+            return "0";
+        return sb.toString();
+    }
+}
